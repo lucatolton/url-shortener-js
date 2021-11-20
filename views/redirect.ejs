@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>URL Redirection Service</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body{ font: 14px sans-serif; text-align: center; }
+    </style>
+</head>
+<body>
+    <h1 class="my-5">
+        <b>You are about to be redirected</b><br />
+        You have clicked on a shortened URL, which is trying to send you to <b><%= url %></b>
+    </h1>
+    <p>
+        <a onclick="preview()" class="btn btn-warning">Preview Site</a>
+        <a href="<%= url %>" class="btn btn-danger ml-3">Take me there</a>
+    </p>
+    <br /><br />
+    <center>
+        <img id="site_preview" src="<%= screenshot %>" alt="Site preview" style="display: none;">
+    </center>
+    <script>
+        function preview() {
+            var x = document.getElementById('site_preview');
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
