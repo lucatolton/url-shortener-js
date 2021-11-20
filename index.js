@@ -39,7 +39,7 @@ app.post('/', async (req, res) => {
 app.get('/:url', async (req, res) => {
     const data = await db.get(req.params.url);
     if (data !== null) {
-        const browser = await puppeteer.launch({ headless: true });
+        const browser = await puppeteer.launch({ headless: true, args: ['--use-gl=egl'] });
         const page = await browser.newPage();
         await page.setViewport({ width: 1280, height: 720 });
         await page.goto(data.url);
@@ -48,7 +48,7 @@ app.get('/:url', async (req, res) => {
 
         res.render('redirect', { url: data.url, screenshot: `/screenshots/${req.params.url}.png` });
     } else {
-        res.send(`Invalid shortened URL`);
+        res.render('invalid');
     }
 });
 
